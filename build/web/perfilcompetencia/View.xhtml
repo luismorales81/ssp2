@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilcompetenciaViewDlg" widgetVar="PerfilcompetenciaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPerfilcompetenciaTitle}">
+            <h:form id="PerfilcompetenciaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{perfilcompetenciaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPerfilcompetenciaLabel_id}"/>
+                        <h:outputText value="#{perfilcompetenciaController.selected.id}" title="#{bundle.ViewPerfilcompetenciaTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPerfilcompetenciaLabel_idCompetencia}"/>
+                        <h:outputText value="#{perfilcompetenciaController.selected.idCompetencia}" title="#{bundle.ViewPerfilcompetenciaTitle_idCompetencia}"/>
+                        <h:outputText value="#{bundle.ViewPerfilcompetenciaLabel_idPerfil}"/>
+                        <h:outputText value="#{perfilcompetenciaController.selected.idPerfil}" title="#{bundle.ViewPerfilcompetenciaTitle_idPerfil}"/>
+                        <h:outputText value="#{bundle.ViewPerfilcompetenciaLabel_competenciambti}"/>
+                        <h:outputText value="#{perfilcompetenciaController.selected.competenciambti}" title="#{bundle.ViewPerfilcompetenciaTitle_competenciambti}"/>
+                        <h:outputText value="#{bundle.ViewPerfilcompetenciaLabel_competencia}"/>
+                        <h:outputText value="#{perfilcompetenciaController.selected.competencia}" title="#{bundle.ViewPerfilcompetenciaTitle_competencia}"/>
+                        <h:outputText value="#{bundle.ViewPerfilcompetenciaLabel_perfil}"/>
+                        <h:outputText value="#{perfilcompetenciaController.selected.perfil}" title="#{bundle.ViewPerfilcompetenciaTitle_perfil}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PerfilcompetenciaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

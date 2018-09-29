@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConvocatoriapostulantesCreateDlg" widgetVar="ConvocatoriapostulantesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateConvocatoriapostulantesTitle}">
+            <h:form id="ConvocatoriapostulantesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{convocatoriapostulantesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{convocatoriapostulantesController.selected.id}" title="#{bundle.CreateConvocatoriapostulantesTitle_id}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_idMbti}" for="idMbti" />
+                        <p:inputText id="idMbti" value="#{convocatoriapostulantesController.selected.idMbti}" title="#{bundle.CreateConvocatoriapostulantesTitle_idMbti}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_idMbti}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_idConvocatoria}" for="idConvocatoria" />
+                        <p:inputText id="idConvocatoria" value="#{convocatoriapostulantesController.selected.idConvocatoria}" title="#{bundle.CreateConvocatoriapostulantesTitle_idConvocatoria}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_idConvocatoria}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_fueSeleccionado}" for="fueSeleccionado" />
+                        <p:inputText id="fueSeleccionado" value="#{convocatoriapostulantesController.selected.fueSeleccionado}" title="#{bundle.CreateConvocatoriapostulantesTitle_fueSeleccionado}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_fueSeleccionado}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_presentoDocumentacion}" for="presentoDocumentacion" />
+                        <p:inputText id="presentoDocumentacion" value="#{convocatoriapostulantesController.selected.presentoDocumentacion}" title="#{bundle.CreateConvocatoriapostulantesTitle_presentoDocumentacion}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_presentoDocumentacion}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_puntajeTotalObtenido}" for="puntajeTotalObtenido" />
+                        <p:inputText id="puntajeTotalObtenido" value="#{convocatoriapostulantesController.selected.puntajeTotalObtenido}" title="#{bundle.CreateConvocatoriapostulantesTitle_puntajeTotalObtenido}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_puntajeTotalObtenido}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_idPersona}" for="idPersona" />
+                        <p:inputText id="idPersona" value="#{convocatoriapostulantesController.selected.idPersona}" title="#{bundle.CreateConvocatoriapostulantesTitle_idPersona}" required="true" requiredMessage="#{bundle.CreateConvocatoriapostulantesRequiredMessage_idPersona}"/>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_persona}" for="persona" />
+                        <p:selectOneMenu id="persona" value="#{convocatoriapostulantesController.selected.persona}" >
+                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
+                                           var="personaItem"
+                                           itemValue="#{personaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_convocatoria}" for="convocatoria" />
+                        <p:selectOneMenu id="convocatoria" value="#{convocatoriapostulantesController.selected.convocatoria}" >
+                            <f:selectItems value="#{convocatoriaController.itemsAvailableSelectOne}"
+                                           var="convocatoriaItem"
+                                           itemValue="#{convocatoriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateConvocatoriapostulantesLabel_mbti}" for="mbti" />
+                        <p:selectOneMenu id="mbti" value="#{convocatoriapostulantesController.selected.mbti}" >
+                            <f:selectItems value="#{mbtiController.itemsAvailableSelectOne}"
+                                           var="mbtiItem"
+                                           itemValue="#{mbtiItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{convocatoriapostulantesController.create}" value="#{bundle.Save}" update="display,:ConvocatoriapostulantesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ConvocatoriapostulantesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConvocatoriapostulantesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

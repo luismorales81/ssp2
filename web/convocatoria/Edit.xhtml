@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConvocatoriaEditDlg" widgetVar="ConvocatoriaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditConvocatoriaTitle}">
+            <h:form id="ConvocatoriaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{convocatoriaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditConvocatoriaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{convocatoriaController.selected.id}" title="#{bundle.EditConvocatoriaTitle_id}" required="true" requiredMessage="#{bundle.EditConvocatoriaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditConvocatoriaLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{convocatoriaController.selected.descripcion}" title="#{bundle.EditConvocatoriaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditConvocatoriaRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditConvocatoriaLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:calendar id="fechaCreacion" pattern="MM/dd/yyyy" value="#{convocatoriaController.selected.fechaCreacion}" title="#{bundle.EditConvocatoriaTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditConvocatoriaRequiredMessage_fechaCreacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditConvocatoriaLabel_idPerfil}" for="idPerfil" />
+                        <p:inputText id="idPerfil" value="#{convocatoriaController.selected.idPerfil}" title="#{bundle.EditConvocatoriaTitle_idPerfil}" required="true" requiredMessage="#{bundle.EditConvocatoriaRequiredMessage_idPerfil}"/>
+                        <p:outputLabel value="#{bundle.EditConvocatoriaLabel_convocatoriapostulantes}" for="convocatoriapostulantes" />
+                        <p:selectOneMenu id="convocatoriapostulantes" value="#{convocatoriaController.selected.convocatoriapostulantes}" required="true" requiredMessage="#{bundle.EditConvocatoriaRequiredMessage_convocatoriapostulantes}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{convocatoriapostulantesController.itemsAvailableSelectOne}"
+                                           var="convocatoriapostulantesItem"
+                                           itemValue="#{convocatoriapostulantesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditConvocatoriaLabel_perfil}" for="perfil" />
+                        <p:selectOneMenu id="perfil" value="#{convocatoriaController.selected.perfil}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{perfilController.itemsAvailableSelectOne}"
+                                           var="perfilItem"
+                                           itemValue="#{perfilItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{convocatoriaController.update}" value="#{bundle.Save}" update="display,:ConvocatoriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ConvocatoriaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConvocatoriaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

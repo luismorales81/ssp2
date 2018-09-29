@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaEditDlg" widgetVar="PersonaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonaTitle}">
+            <h:form id="PersonaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{personaController.selected.id}" title="#{bundle.EditPersonaTitle_id}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_nombre}" for="nombre" />
+                        <p:inputTextarea rows="4" cols="30" id="nombre" value="#{personaController.selected.nombre}" title="#{bundle.EditPersonaTitle_nombre}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_sexo}" for="sexo" />
+                        <p:inputTextarea rows="4" cols="30" id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.EditPersonaTitle_sexo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_sexo}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_dni}" for="dni" />
+                        <p:inputText id="dni" value="#{personaController.selected.dni}" title="#{bundle.EditPersonaTitle_dni}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_dni}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_estadoCivil}" for="estadoCivil" />
+                        <p:inputTextarea rows="4" cols="30" id="estadoCivil" value="#{personaController.selected.estadoCivil}" title="#{bundle.EditPersonaTitle_estadoCivil}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_estadoCivil}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.EditPersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_fechaNacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_mail}" for="mail" />
+                        <p:inputTextarea rows="4" cols="30" id="mail" value="#{personaController.selected.mail}" title="#{bundle.EditPersonaTitle_mail}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_mail}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_direccion}" for="direccion" />
+                        <p:inputTextarea rows="4" cols="30" id="direccion" value="#{personaController.selected.direccion}" title="#{bundle.EditPersonaTitle_direccion}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.EditPersonaTitle_telefono}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_disponibilidadViajes}" for="disponibilidadViajes" />
+                        <p:inputText id="disponibilidadViajes" value="#{personaController.selected.disponibilidadViajes}" title="#{bundle.EditPersonaTitle_disponibilidadViajes}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_disponibilidadViajes}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_canetConducir}" for="canetConducir" />
+                        <p:inputText id="canetConducir" value="#{personaController.selected.canetConducir}" title="#{bundle.EditPersonaTitle_canetConducir}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_canetConducir}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_foto}" for="foto" />
+                        <p:inputTextarea rows="4" cols="30" id="foto" value="#{personaController.selected.foto}" title="#{bundle.EditPersonaTitle_foto}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_foto}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_experiencia}" for="experiencia" />
+                        <p:inputTextarea rows="4" cols="30" id="experiencia" value="#{personaController.selected.experiencia}" title="#{bundle.EditPersonaTitle_experiencia}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_experiencia}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_idiomas}" for="idiomas" />
+                        <p:inputTextarea rows="4" cols="30" id="idiomas" value="#{personaController.selected.idiomas}" title="#{bundle.EditPersonaTitle_idiomas}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_idiomas}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_informatica}" for="informatica" />
+                        <p:inputTextarea rows="4" cols="30" id="informatica" value="#{personaController.selected.informatica}" title="#{bundle.EditPersonaTitle_informatica}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_informatica}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_referencias}" for="referencias" />
+                        <p:inputTextarea rows="4" cols="30" id="referencias" value="#{personaController.selected.referencias}" title="#{bundle.EditPersonaTitle_referencias}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_referencias}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_convocatoriapostulantes}" for="convocatoriapostulantes" />
+                        <p:selectOneMenu id="convocatoriapostulantes" value="#{personaController.selected.convocatoriapostulantes}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_convocatoriapostulantes}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{convocatoriapostulantesController.itemsAvailableSelectOne}"
+                                           var="convocatoriapostulantesItem"
+                                           itemValue="#{convocatoriapostulantesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaController.update}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompetenciambtiEditDlg" widgetVar="CompetenciambtiEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompetenciambtiTitle}">
+            <h:form id="CompetenciambtiEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{competenciambtiController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCompetenciambtiLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{competenciambtiController.selected.id}" title="#{bundle.EditCompetenciambtiTitle_id}" required="true" requiredMessage="#{bundle.EditCompetenciambtiRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditCompetenciambtiLabel_idMbti}" for="idMbti" />
+                        <p:inputText id="idMbti" value="#{competenciambtiController.selected.idMbti}" title="#{bundle.EditCompetenciambtiTitle_idMbti}" required="true" requiredMessage="#{bundle.EditCompetenciambtiRequiredMessage_idMbti}"/>
+                        <p:outputLabel value="#{bundle.EditCompetenciambtiLabel_idPC}" for="idPC" />
+                        <p:inputText id="idPC" value="#{competenciambtiController.selected.idPC}" title="#{bundle.EditCompetenciambtiTitle_idPC}" required="true" requiredMessage="#{bundle.EditCompetenciambtiRequiredMessage_idPC}"/>
+                        <p:outputLabel value="#{bundle.EditCompetenciambtiLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{competenciambtiController.selected.valor}" title="#{bundle.EditCompetenciambtiTitle_valor}" required="true" requiredMessage="#{bundle.EditCompetenciambtiRequiredMessage_valor}"/>
+                        <p:outputLabel value="#{bundle.EditCompetenciambtiLabel_perfilcompetencia}" for="perfilcompetencia" />
+                        <p:selectOneMenu id="perfilcompetencia" value="#{competenciambtiController.selected.perfilcompetencia}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{perfilcompetenciaController.itemsAvailableSelectOne}"
+                                           var="perfilcompetenciaItem"
+                                           itemValue="#{perfilcompetenciaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompetenciambtiLabel_mbti}" for="mbti" />
+                        <p:selectOneMenu id="mbti" value="#{competenciambtiController.selected.mbti}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{mbtiController.itemsAvailableSelectOne}"
+                                           var="mbtiItem"
+                                           itemValue="#{mbtiItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{competenciambtiController.update}" value="#{bundle.Save}" update="display,:CompetenciambtiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompetenciambtiEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompetenciambtiEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

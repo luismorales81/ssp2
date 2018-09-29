@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MbtiViewDlg" widgetVar="MbtiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMbtiTitle}">
+            <h:form id="MbtiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mbtiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMbtiLabel_id}"/>
+                        <h:outputText value="#{mbtiController.selected.id}" title="#{bundle.ViewMbtiTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMbtiLabel_combinacion}"/>
+                        <h:outputText value="#{mbtiController.selected.combinacion}" title="#{bundle.ViewMbtiTitle_combinacion}"/>
+                        <h:outputText value="#{bundle.ViewMbtiLabel_descripcion}"/>
+                        <h:outputText value="#{mbtiController.selected.descripcion}" title="#{bundle.ViewMbtiTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewMbtiLabel_convocatoriapostulantes}"/>
+                        <h:outputText value="#{mbtiController.selected.convocatoriapostulantes}" title="#{bundle.ViewMbtiTitle_convocatoriapostulantes}"/>
+                        <h:outputText value="#{bundle.ViewMbtiLabel_competenciambti}"/>
+                        <h:outputText value="#{mbtiController.selected.competenciambti}" title="#{bundle.ViewMbtiTitle_competenciambti}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MbtiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

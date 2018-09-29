@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:form>            
+        
+
+        <p:wizard flowListener="#{perfilStep.onFlowProcess}">
+            <p:tab id="personal" title="Personal">
+                <p:panel header="Personal Details">
+                    <p:messages />
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Nombre: " />
+                        <p:inputText id="nombre" value="#{perfilController.selected.nombre}" title="#{bundle.CreatePerfilTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{perfilController.selected.fecha}" title="#{bundle.EditPerfilTitle_fecha}" showOn="button"/>
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="address" title="Address">
+                <p:panel header="Seleccion de las competencias deseadas para el perfil">
+                    <p:dataTable id="datalistComp" value="#{perfilController.items}" var="item"
+                                 selectionMode="single" 
+                                 paginator="true"
+                                 rowKey="#{item}"
+                                 rows="5"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+                        <p:column style="text-align: center; min-width: 70px" >
+                            <f:facet name="header">
+                                <h:outputText value="Novedades"/>
+                            </f:facet>
+                            <p:commandButton icon="ui-icon-plusthick" actionListener="#{perfilStep.añadeComp(item)}" 
+                                             update=":PerfilCreateForm:datalistCompSel"  />        
+                        </p:column>
+
+                        <p:column filterBy="nombre">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompetenciaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+
+
+
+                    </p:dataTable>
+                </p:panel>
+
+
+                <p:dataTable id="datalistCompSel" value="#{perfilStep.listaComp}" var="item2"
+                             selectionMode="single" paginator="true" rowKey="#{item2.id}" rows="5"
+                             rowsPerPageTemplate="10,20,30,40,50" >
+
+                    <p:column filterBy="nombre">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompetenciaTitle_nombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item2.nombre}"/>
+                    </p:column>
+
+                    <p:column filterBy="descripcion">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompetenciaTitle_descripcion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item2.descripcion}"/>
+                    </p:column>
+
+                    <p:column style="text-align: center; min-width: 70px" >
+                        <f:facet name="header">
+                            <h:outputText value="Dar valores de MBI"/>
+                        </f:facet>
+                        <p:commandButton icon="ui-icon-calculator" actionListener="#{perfilStep.ponerValorNuevo()}"  oncomplete="PF('mbtiCompDialog').show()"  
+                                         update=":growl,:mbtiCompForm" />        
+                    </p:column>
+
+                    <p:column style="text-align: center; min-width: 70px" >
+                        <f:facet name="header">
+                            <h:outputText value="Eliminar"/>
+                        </f:facet>
+                        <p:commandButton icon="ui-icon-closethick" actionListener="#{perfilStep.eliminaComp(item2)}" 
+                                         update=":growl,:PerfilCreateForm:datalistCompSel" />        
+                    </p:column>
+
+                    <!--                        <p:column style="text-align: center; min-width: 70px" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Valores"/>
+                                                </f:facet>
+                                                <p:commandButton icon="ui-icon-wrench" actionListener="#{perfilStep.confValores(item2)}" 
+                                                                 update=":growl,:PerfilCompetenciaMbtiCreateForm"  oncomplete="PF('PerfilCompetenciaMbtiCreateDialog').show()"/>        
+                                            </p:column>-->
+
+                </p:dataTable>
+            </p:tab>
+
+            <p:tab id="contact" title="Contact">
+                <p:panel header="Competencia/MBTI">
+
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="confirm" title="Confirmation">
+                <p:panel header="Confirmation">
+                    <h:panelGrid id="confirmation" columns="3" >
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel value="Arquitecto" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <h:outputText value="Street: " />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <h:outputText value="Email: " />
+
+                        </h:panelGrid>
+                    </h:panelGrid>
+
+                    <p:commandButton value="Submit" actionListener="#{perfilStep.save}" update="growl" process="@this"/>
+                </p:panel>
+            </p:tab>
+        </p:wizard>
+
+    </h:form>
+</html>

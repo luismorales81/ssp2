@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConvocatoriapostulantesViewDlg" widgetVar="ConvocatoriapostulantesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewConvocatoriapostulantesTitle}">
+            <h:form id="ConvocatoriapostulantesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{convocatoriapostulantesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_id}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.id}" title="#{bundle.ViewConvocatoriapostulantesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_idMbti}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.idMbti}" title="#{bundle.ViewConvocatoriapostulantesTitle_idMbti}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_idConvocatoria}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.idConvocatoria}" title="#{bundle.ViewConvocatoriapostulantesTitle_idConvocatoria}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_fueSeleccionado}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.fueSeleccionado}" title="#{bundle.ViewConvocatoriapostulantesTitle_fueSeleccionado}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_presentoDocumentacion}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.presentoDocumentacion}" title="#{bundle.ViewConvocatoriapostulantesTitle_presentoDocumentacion}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_puntajeTotalObtenido}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.puntajeTotalObtenido}" title="#{bundle.ViewConvocatoriapostulantesTitle_puntajeTotalObtenido}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_idPersona}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.idPersona}" title="#{bundle.ViewConvocatoriapostulantesTitle_idPersona}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_persona}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.persona}" title="#{bundle.ViewConvocatoriapostulantesTitle_persona}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_convocatoria}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.convocatoria}" title="#{bundle.ViewConvocatoriapostulantesTitle_convocatoria}"/>
+                        <h:outputText value="#{bundle.ViewConvocatoriapostulantesLabel_mbti}"/>
+                        <h:outputText value="#{convocatoriapostulantesController.selected.mbti}" title="#{bundle.ViewConvocatoriapostulantesTitle_mbti}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ConvocatoriapostulantesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

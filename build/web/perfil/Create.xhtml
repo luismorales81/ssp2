@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilCreateDlg" widgetVar="PerfilCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePerfilTitle}">
+            <h:form id="PerfilCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{perfilController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{perfilController.selected.id}" title="#{bundle.CreatePerfilTitle_id}" required="true" requiredMessage="#{bundle.CreatePerfilRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_estado}" for="estado" />
+                        <p:inputTextarea rows="4" cols="30" id="estado" value="#{perfilController.selected.estado}" title="#{bundle.CreatePerfilTitle_estado}" required="true" requiredMessage="#{bundle.CreatePerfilRequiredMessage_estado}"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{perfilController.selected.fecha}" title="#{bundle.EditPerfilTitle_fecha}" required="true" requiredMessage="#{bundle.EditPerfilRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_nombre}" for="nombre" />
+                        <p:inputTextarea rows="4" cols="30" id="nombre" value="#{perfilController.selected.nombre}" title="#{bundle.CreatePerfilTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePerfilRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_convocatoria}" for="convocatoria" />
+                        <p:selectOneMenu id="convocatoria" value="#{perfilController.selected.convocatoria}" required="true" requiredMessage="#{bundle.EditPerfilRequiredMessage_convocatoria}">
+                            <f:selectItems value="#{convocatoriaController.itemsAvailableSelectOne}"
+                                           var="convocatoriaItem"
+                                           itemValue="#{convocatoriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePerfilLabel_perfilCompetencia}" for="perfilCompetencia" />
+                        <p:selectOneMenu id="perfilCompetencia" value="#{perfilController.selected.perfilCompetencia}" required="true" requiredMessage="#{bundle.EditPerfilRequiredMessage_perfilCompetencia}">
+                            <f:selectItems value="#{perfilCompetenciaController.itemsAvailableSelectOne}"
+                                           var="perfilCompetenciaItem"
+                                           itemValue="#{perfilCompetenciaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{perfilController.create}" value="#{bundle.Save}" update="display,:PerfilListForm:datalist,:growl" oncomplete="handleSubmit(args,'PerfilCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PerfilCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MbtiCreateDlg" widgetVar="MbtiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMbtiTitle}">
+            <h:form id="MbtiCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mbtiController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMbtiLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{mbtiController.selected.id}" title="#{bundle.CreateMbtiTitle_id}" required="true" requiredMessage="#{bundle.CreateMbtiRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateMbtiLabel_combinacion}" for="combinacion" />
+                        <p:inputText id="combinacion" value="#{mbtiController.selected.combinacion}" title="#{bundle.CreateMbtiTitle_combinacion}" required="true" requiredMessage="#{bundle.CreateMbtiRequiredMessage_combinacion}"/>
+                        <p:outputLabel value="#{bundle.CreateMbtiLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbtiController.selected.descripcion}" title="#{bundle.CreateMbtiTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateMbtiRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateMbtiLabel_convocatoriapostulantes}" for="convocatoriapostulantes" />
+                        <p:selectOneMenu id="convocatoriapostulantes" value="#{mbtiController.selected.convocatoriapostulantes}" required="true" requiredMessage="#{bundle.EditMbtiRequiredMessage_convocatoriapostulantes}">
+                            <f:selectItems value="#{convocatoriapostulantesController.itemsAvailableSelectOne}"
+                                           var="convocatoriapostulantesItem"
+                                           itemValue="#{convocatoriapostulantesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMbtiLabel_competenciambti}" for="competenciambti" />
+                        <p:selectOneMenu id="competenciambti" value="#{mbtiController.selected.competenciambti}" required="true" requiredMessage="#{bundle.EditMbtiRequiredMessage_competenciambti}">
+                            <f:selectItems value="#{competenciambtiController.itemsAvailableSelectOne}"
+                                           var="competenciambtiItem"
+                                           itemValue="#{competenciambtiItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mbtiController.create}" value="#{bundle.Save}" update="display,:MbtiListForm:datalist,:growl" oncomplete="handleSubmit(args,'MbtiCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MbtiCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

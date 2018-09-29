@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilCompetenciaMbtiCreateDlg" widgetVar="PerfilCompetenciaMbtiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Definicion de Valores para la Competencia">
+            <h:form id="PerfilCompetenciaMbtiCreateForm">
+                <p:messages id="mensajesid" for="mensajesid" showDetail="true" closable="true" autoUpdate="true" />     
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{perfilController.mbtiVal != null}">
+                        <p:outputLabel value="Arquitecto" />
+                        <p:inputText value="#{perfilController.mbtiVal.arquitecto}" required="true" />
+                        <p:outputLabel value="Logico" />
+                        <p:inputText value="#{perfilController.mbtiVal.logico}" required="true" />
+                        <p:outputLabel value="Comandante" />
+                        <p:inputText value="#{perfilController.mbtiVal.comandante}" required="true" />
+                        <p:outputLabel value="Innovador" />
+                        <p:inputText value="#{perfilController.mbtiVal.innovador}" required="true" />
+                        <p:outputLabel value="Abogado" />
+                        <p:inputText value="#{perfilController.mbtiVal.abogado}" required="true" />
+                        <p:outputLabel value="Mediador" />
+                        <p:inputText value="#{perfilController.mbtiVal.mediador}" required="true" />
+                        <p:outputLabel value="Protagonista" />
+                        <p:inputText value="#{perfilController.mbtiVal.protagonista}" required="true" />
+                        <p:outputLabel value="Activista" />                        
+                        <p:inputText value="#{perfilController.mbtiVal.activista}" required="true" />
+                        <p:outputLabel value="Logista" />
+                        <p:inputText value="#{perfilController.mbtiVal.logista}" required="true" />
+                        <p:outputLabel value="Defensor" />
+                        <p:inputText value="#{perfilController.mbtiVal.defensor}" required="true" />
+                        <p:outputLabel value="Ejecutiva" />
+                        <p:inputText value="#{perfilController.mbtiVal.ejecutivo}" required="true" />
+                        <p:outputLabel value="Consul" />
+                        <p:inputText value="#{perfilController.mbtiVal.consul}" required="true" />
+                        <p:outputLabel value="Virtuoso" />
+                        <p:inputText value="#{perfilController.mbtiVal.virtuoso}" required="true" />
+                        <p:outputLabel value="Aventurero" />
+                        <p:inputText value="#{perfilController.mbtiVal.aventurero}" required="true" />
+                        <p:outputLabel value="Emprendedor" />
+                        <p:inputText value="#{perfilController.mbtiVal.emprendedor}" required="true" />
+                        <p:outputLabel value="Animador" />
+                        <p:inputText value="#{perfilController.mbtiVal.animador}" required="true" />
+                    </p:panelGrid>
+                    
+                    <p:commandButton value="Guardar" actionListener="#{perfilController.grabarMbtiVal()}" update=":PerfilCreateForm:datalistCompSel"/>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PerfilCompetenciaMbtiCreateDialog.hide()" />
+                    <p:outputLabel id="mensajeError" value="#{perfilController.error}" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

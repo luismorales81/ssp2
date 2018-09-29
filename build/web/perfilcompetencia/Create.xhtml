@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilcompetenciaCreateDlg" widgetVar="PerfilcompetenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePerfilcompetenciaTitle}">
+            <h:form id="PerfilcompetenciaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{perfilcompetenciaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePerfilcompetenciaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{perfilcompetenciaController.selected.id}" title="#{bundle.CreatePerfilcompetenciaTitle_id}" required="true" requiredMessage="#{bundle.CreatePerfilcompetenciaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilcompetenciaLabel_idCompetencia}" for="idCompetencia" />
+                        <p:inputText id="idCompetencia" value="#{perfilcompetenciaController.selected.idCompetencia}" title="#{bundle.CreatePerfilcompetenciaTitle_idCompetencia}" required="true" requiredMessage="#{bundle.CreatePerfilcompetenciaRequiredMessage_idCompetencia}"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilcompetenciaLabel_idPerfil}" for="idPerfil" />
+                        <p:inputText id="idPerfil" value="#{perfilcompetenciaController.selected.idPerfil}" title="#{bundle.CreatePerfilcompetenciaTitle_idPerfil}" required="true" requiredMessage="#{bundle.CreatePerfilcompetenciaRequiredMessage_idPerfil}"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilcompetenciaLabel_competenciambti}" for="competenciambti" />
+                        <p:selectOneMenu id="competenciambti" value="#{perfilcompetenciaController.selected.competenciambti}" required="true" requiredMessage="#{bundle.EditPerfilcompetenciaRequiredMessage_competenciambti}">
+                            <f:selectItems value="#{competenciambtiController.itemsAvailableSelectOne}"
+                                           var="competenciambtiItem"
+                                           itemValue="#{competenciambtiItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePerfilcompetenciaLabel_competencia}" for="competencia" />
+                        <p:selectOneMenu id="competencia" value="#{perfilcompetenciaController.selected.competencia}" >
+                            <f:selectItems value="#{competenciaController.itemsAvailableSelectOne}"
+                                           var="competenciaItem"
+                                           itemValue="#{competenciaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePerfilcompetenciaLabel_perfil}" for="perfil" />
+                        <p:selectOneMenu id="perfil" value="#{perfilcompetenciaController.selected.perfil}" >
+                            <f:selectItems value="#{perfilController.itemsAvailableSelectOne}"
+                                           var="perfilItem"
+                                           itemValue="#{perfilItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{perfilcompetenciaController.create}" value="#{bundle.Save}" update="display,:PerfilcompetenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PerfilcompetenciaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PerfilcompetenciaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

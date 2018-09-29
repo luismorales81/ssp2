@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompetenciambtiViewDlg" widgetVar="CompetenciambtiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCompetenciambtiTitle}">
+            <h:form id="CompetenciambtiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{competenciambtiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCompetenciambtiLabel_id}"/>
+                        <h:outputText value="#{competenciambtiController.selected.id}" title="#{bundle.ViewCompetenciambtiTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCompetenciambtiLabel_idMbti}"/>
+                        <h:outputText value="#{competenciambtiController.selected.idMbti}" title="#{bundle.ViewCompetenciambtiTitle_idMbti}"/>
+                        <h:outputText value="#{bundle.ViewCompetenciambtiLabel_idPC}"/>
+                        <h:outputText value="#{competenciambtiController.selected.idPC}" title="#{bundle.ViewCompetenciambtiTitle_idPC}"/>
+                        <h:outputText value="#{bundle.ViewCompetenciambtiLabel_valor}"/>
+                        <h:outputText value="#{competenciambtiController.selected.valor}" title="#{bundle.ViewCompetenciambtiTitle_valor}"/>
+                        <h:outputText value="#{bundle.ViewCompetenciambtiLabel_perfilcompetencia}"/>
+                        <h:outputText value="#{competenciambtiController.selected.perfilcompetencia}" title="#{bundle.ViewCompetenciambtiTitle_perfilcompetencia}"/>
+                        <h:outputText value="#{bundle.ViewCompetenciambtiLabel_mbti}"/>
+                        <h:outputText value="#{competenciambtiController.selected.mbti}" title="#{bundle.ViewCompetenciambtiTitle_mbti}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CompetenciambtiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
